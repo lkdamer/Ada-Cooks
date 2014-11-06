@@ -1,0 +1,8 @@
+<%= form_tag url: new_recipe_path do %>
+  <%= label_tag "recipe[name]", "Name" %>
+  <%= text_field_tag "recipe[name]" %><br>
+  <%= label_tag "recipe[ingredients][]", "Ingredents" %>
+  <%= text_area_tag "recipe[ingredients][]", "Example: 1 cup flour, 2 pounds butter" %><br>
+  <%= label_tag "recipe[instructions]", "Instructions" %>
+  <%= text_area_tag "recipe[instructions]" %>
+<% end %>
