@@ -1,8 +1,13 @@
-<%= form_tag url: new_recipe_path do %>
-  <%= label_tag "recipe[name]", "Name" %>
+<%= form_tag recipes_path do %>
+  <%= label_tag "recipe[name]", "Name" %><br>
   <%= text_field_tag "recipe[name]" %><br>
-  <%= label_tag "recipe[ingredients][]", "Ingredents" %>
-  <%= text_area_tag "recipe[ingredients][]", "Example: 1 cup flour, 2 pounds butter" %><br>
-  <%= label_tag "recipe[instructions]", "Instructions" %>
-  <%= text_area_tag "recipe[instructions]" %>
+  <%= label_tag "recipe[time]", "Preparation time" %><br>
+  <%= text_field_tag "recipe[time]" %><br>
+  <%= label_tag "recipe[ingredients][]", "Ingredents" %><br>
+  <%= text_area_tag "recipe[ingredients][]", "", placeholder: "Example: 1 cup flour, 2 pounds butter, number unit ingredient, got it? Grea!" %><br>
+  <%= label_tag "recipe[instructions]", "Instructions" %><br>
+  <%= text_area_tag "recipe[instructions]" %> <br>
+  <%= label_tag "recipe[servings]", "Serves" %><br>
+  <%= text_field_tag "recipe[servings]", "", placeholder: "1" %><br>
+  <%= submit_tag "Save Recipe"%>
 <% end %>
