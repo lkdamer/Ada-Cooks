@@ -1,1 +1,5 @@
-Recipes! Check 'em out!
+<h3>Recipes! Check 'em out!</h3>
+
+<% @recipes.each do |recipe| %>
+  <%= link_to recipe.name, recipe %><br>
+<% end %>

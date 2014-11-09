@@ -1,1 +1,23 @@
-You made a recipe! Go you! Woooooo!
+<h2><%= @recipe.name %></h2>
+
+<ul>
+  <li>
+    Preparation time: <%= @recipe.time_number %> <%= @recipe.time_units %>
+  </li>
+  <h4>Ingredients</h4>
+  <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+    <li>
+      <%= recipe_ingredient.quantity %>
+      <%= recipe_ingredient.unit ? " #{recipe_ingredient.unit} " : " " %>
+      <%= recipe_ingredient.ingredient.name %>
+    </li>
+  <% end %>
+  <h4>Instructions</h4>
+  <li>
+    <%= @recipe.instructions %>
+  </li>
+
+  <li>
+    Serves <%= @recipe.servings %>
+  </li>
+</ul>
