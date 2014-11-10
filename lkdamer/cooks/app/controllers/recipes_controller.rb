@@ -20,4 +20,10 @@ class RecipesController < ApplicationController
     @recipe_ingredients = @recipe.recipe_ingredients
   end
 
+  def update
+    @recipe_update = RecipeForm.new(params)
+    @recipe_update.update
+
+  end
+
 end
