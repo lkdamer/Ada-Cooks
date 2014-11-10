@@ -21,3 +21,6 @@
     Serves <%= @recipe.servings %>
   </li>
 </ul>
+
+<%= link_to "Edit this recipe", edit_recipe_path(@recipe.id), class: "btn btn-default" %>
+<%= link_to "Delete this recipe", @recipe, method: :delete, class: "btn btn-default"%>

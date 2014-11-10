@@ -17,5 +17,6 @@
   <%= text_area_tag "recipe[instructions]", @recipe.instructions %> <br>
   <%= label_tag "recipe[servings]", "Serves" %><br>
   <%= text_field_tag "recipe[servings]", @recipe.servings, placeholder: "1" %><br>
-  <%= submit_tag "Save Recipe"%>
+  <%= submit_tag "Save Recipe", class: "btn btn-default" %>
 <% end %>
+<%= link_to "Delete this recipe", @recipe, method: :delete, class: "btn btn-default"%>

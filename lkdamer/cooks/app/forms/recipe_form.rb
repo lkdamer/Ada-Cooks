@@ -77,21 +77,35 @@ class RecipeForm
       ingredient_list = attribs[:new_ingredients].split(", ")
       ingredient_handling(ingredient_list)
     end
-    ing_list = attribs[:ingredients]
-    ing_list.keys.each do |r_i_id|
-      raise ing_list[r_i_id]
-      r_i = RecipeIngredient.find(r_i_id)
-      product_id = ingredient_update_wrangler(r_i.ingredient, ing_list[r_i_id])
-      r_i.update(
-        quantity: ing_list[r_i_id][:quantity],
-        unit: ing_list[r_i_id][:unit],
-        product_id: product_id
-      )
+    if ing_list = attribs[:ingredients]
+      ing_list.keys.each do |r_i_id|
+        r_i = RecipeIngredient.find(r_i_id)
+        ing_id = ingredient_update_wrangler(r_i.ingredient, ing_list[r_i_id])
+        r_i.update(
+          quantity: ing_list[r_i_id][:quantity],
+          unit: ing_list[r_i_id][:unit],
+          ingredient_id: ing_id
+        )
+        if r_i.quantity == 0
+          r_i.delete
+        end
+      end
     end
   end
 
   def ingredient_update_wrangler(ingredient, info)
-    
+    if ingredient.name == info[:ingredient]
+      ingredient.id
+    elsif ingredient.recipes.length > 1
+      new_ing = Ingredient.create(info[:ingredient])
+      new_ing.id
+    elsif other_ingredient = Ingredient.find_by(name: info[:ingredient])
+      ingredient.delete
+      other_ingredient.id
+    else
+      ingredient.update( name: info[:ingredient])
+      ingredient.save
+    end
   end
 
 end
